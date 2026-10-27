@@ -1,9 +1,12 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+  background-color: rgb(11 16 32 / 94%);
+  backdrop-filter: blur(16px);
   width: 100%;
   z-index: 2;
   position: fixed;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 18%);
 }
 
 header nav {
@@ -246,9 +249,12 @@ header nav .nav-sections .nav-drop > button[aria-expanded='false'] + ul {
     width: 200px;
     top: 150%;
     padding: 16px;
-    background-color: var(--light-color);
-    white-space: initial;
-  }
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      background-color: var(--surface-color);
+      box-shadow: var(--shadow-card);
+      white-space: initial;
+    }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
     content: '';
@@ -259,11 +265,11 @@ header nav .nav-sections .nav-drop > button[aria-expanded='false'] + ul {
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
+    border-bottom: 8px solid var(--surface-color);
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
+    padding: 8px 4px;
   }
 }
 

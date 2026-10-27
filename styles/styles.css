@@ -12,12 +12,23 @@
 
 :root {
   /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --background-color: #0b1020;
+  --surface-color: #111a2e;
+  --light-color: #17233a;
+  --dark-color: #1d2b45;
+  --text-color: #f1f5ff;
+  --muted-color: #a7b5ce;
+  --border-color: #2a3956;
+  --link-color: #75eaff;
+  --link-hover-color: #c5ff2f;
+  --accent-color: #c5ff2f;
+  --accent-secondary-color: #00e5ff;
+
+  /* surfaces */
+  --radius-card: 20px;
+  --radius-control: 999px;
+  --shadow-card: 0 16px 40px rgb(0 0 0 / 28%);
+  --shadow-glow: 0 0 24px rgb(0 229 255 / 14%);
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
@@ -136,8 +147,9 @@ pre {
 
 pre {
   padding: 16px;
-  border-radius: 8px;
-  background-color: var(--light-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: var(--surface-color);
   overflow-x: auto;
   white-space: pre;
 }
@@ -153,6 +165,12 @@ button {
   font: inherit;
 }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-secondary-color);
+  outline-offset: 3px;
+}
+
 /* links */
 a:any-link {
   color: var(--link-color);
@@ -163,6 +181,8 @@ a:any-link {
 a:hover {
   color: var(--link-hover-color);
   text-decoration: underline;
+  text-decoration-color: var(--accent-color);
+  text-underline-offset: 0.2em;
 }
 
 /* buttons */
@@ -178,11 +198,11 @@ button.button {
   justify-content: center;
   max-width: 100%;
   margin: 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  padding: 0.65em 1.25em;
   font: inherit;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.25;
   text-decoration: none;
   cursor: pointer;
@@ -199,8 +219,8 @@ button.button:disabled {
 
 a.button.primary,
 button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
   color: var(--background-color);
 }
 
@@ -208,9 +228,10 @@ a.button.primary:hover,
 a.button.primary:focus-visible,
 button.button.primary:hover,
 button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
+  border-color: var(--accent-secondary-color);
+  background-color: var(--accent-secondary-color);
+  color: var(--background-color);
+  box-shadow: var(--shadow-glow);
 }
 
 a.button.primary[aria-disabled="true"],
@@ -220,13 +241,13 @@ button.button.primary:disabled,
 button.button.primary:disabled:hover,
 button.button.primary:disabled:focus-visible {
   background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+  border-color: var(--border-color);
+  color: var(--muted-color);
 }
 
 a.button.secondary,
 button.button.secondary {
-  border-color: var(--text-color);
+  border-color: var(--border-color);
   background-color: transparent;
   color: var(--text-color);
 }
@@ -235,9 +256,9 @@ a.button.secondary:hover,
 a.button.secondary:focus-visible,
 button.button.secondary:hover,
 button.button.secondary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--light-color);
-  color: var(--dark-color);
+  border-color: var(--accent-secondary-color);
+  background-color: var(--surface-color);
+  color: var(--accent-secondary-color);
 }
 
 a.button.secondary[aria-disabled="true"],
@@ -247,15 +268,15 @@ button.button.secondary:disabled,
 button.button.secondary:disabled:hover,
 button.button.secondary:disabled:focus-visible {
   background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+  border-color: var(--border-color);
+  color: var(--muted-color);
 }
 
 /* high-impact call-to-action */
 a.button.accent,
 button.button.accent {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
+  border-color: var(--accent-secondary-color);
+  background-color: var(--accent-secondary-color);
   color: var(--background-color);
 }
 
@@ -263,8 +284,9 @@ a.button.accent:hover,
 a.button.accent:focus-visible,
 button.button.accent:hover,
 button.button.accent:focus-visible {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  box-shadow: var(--shadow-glow);
 }
 
 a.button.accent[aria-disabled="true"],
@@ -274,8 +296,8 @@ button.button.accent:disabled,
 button.button.accent:disabled:hover,
 button.button.accent:disabled:focus-visible {
   background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+  border-color: var(--border-color);
+  color: var(--muted-color);
 }
 
 main img {
@@ -319,7 +341,7 @@ main > .section:first-of-type {
 /* section metadata */
 main .section.light,
 main .section.highlight {
-  background-color: var(--light-color);
+  background-color: var(--surface-color);
   margin: 0;
   padding: 40px 0;
 }

@@ -5,26 +5,44 @@
 
 .hero {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
   padding: 40px 24px;
   min-height: 300px;
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-card);
+}
+
+.hero::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(5 10 24 / 88%), rgb(5 10 24 / 35%));
+  content: '';
 }
 
 .hero h1 {
+  position: relative;
+  z-index: 2;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  color: var(--background-color);
+  color: var(--text-color);
+  text-shadow: 0 2px 20px rgb(0 0 0 / 35%);
 }
 
 .hero picture {
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   inset: 0;
   object-fit: cover;
   box-sizing: border-box;
 }
 
 .hero img {
+  display: block;
   object-fit: cover;
   width: 100%;
   height: 100%;

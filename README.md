@@ -25,6 +25,10 @@ npm i
 npm run lint
 ```
 
+## Banner block authoring
+
+Create a `banner` block with a single row containing an image cell, a text cell, and an optional background color cell, in that order. The color can be any valid CSS background color (for example, `#dceeff` or `aliceblue`); leave it out to use the default light blue. On narrow screens, the image stacks above the text.
+
 ## Local development
 
 1. Create a new repository based on the `aem-boilerplate` template
