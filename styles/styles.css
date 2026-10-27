@@ -73,8 +73,8 @@
 body {
   display: none;
   margin: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: magenta;
+  color: cyan;
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
   line-height: 1.6;
@@ -155,7 +155,7 @@ button {
 
 /* links */
 a:any-link {
-  color: var(--link-color);
+  color: red;
   text-decoration: none;
   overflow-wrap: break-word;
 }
