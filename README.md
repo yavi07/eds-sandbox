@@ -1,5 +1,5 @@
-# Your Project's Title...
-Your project's description...
+# EDS Enablement Project
+an enablement project based on EDS
 
 ## Environments
 - Preview: https://main--eds-sandbox--yavi07.aem.page/
