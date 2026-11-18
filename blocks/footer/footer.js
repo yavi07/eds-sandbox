@@ -17,6 +17,20 @@ async function fetchFooter() {
 }
 
 /**
+ * Makes the served fragment match the authored one. Edge Delivery wraps list-item content in
+ * <p> and turns images into responsive <picture> elements; the footer only holds a logo and
+ * small icons, so each picture is replaced by its <img> and a list item's paragraphs unwrapped.
+ * @param {Element} root fragment root
+ */
+function normalizeFragment(root) {
+  root.querySelectorAll('picture').forEach((picture) => {
+    const img = picture.querySelector('img');
+    if (img) picture.replaceWith(img);
+  });
+  root.querySelectorAll('li > p').forEach((p) => p.replaceWith(...p.childNodes));
+}
+
+/**
  * Rewrites relative image paths against the fragment URL so `images/x.svg`
  * resolves next to wherever footer.plain.html was served from.
  * @param {Element} root fragment root
@@ -119,6 +133,7 @@ export default async function decorate(block) {
 
   const tmp = document.createElement('div');
   tmp.innerHTML = fragment.html;
+  normalizeFragment(tmp);
   resolveImages(tmp, fragment.base);
 
   const inner = el('div', 'footer-inner');

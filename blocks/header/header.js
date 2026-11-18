@@ -22,6 +22,20 @@ async function fetchNav() {
 }
 
 /**
+ * Makes the served fragment match the authored one. Edge Delivery wraps list-item content in
+ * <p> and turns images into responsive <picture> elements; the nav only holds small icons, so
+ * each picture is replaced by its <img> and a list item's paragraphs are unwrapped.
+ * @param {Element} root fragment root
+ */
+function normalizeFragment(root) {
+  root.querySelectorAll('picture').forEach((picture) => {
+    const img = picture.querySelector('img');
+    if (img) picture.replaceWith(img);
+  });
+  root.querySelectorAll('li > p').forEach((p) => p.replaceWith(...p.childNodes));
+}
+
+/**
  * Rewrites relative image paths in the fragment against the fragment URL
  * so `images/x.svg` resolves next to wherever nav.plain.html was served from.
  * @param {Element} root fragment root
@@ -212,6 +226,7 @@ export default async function decorate(block) {
 
   const tmp = document.createElement('div');
   tmp.innerHTML = fragment.html;
+  normalizeFragment(tmp);
   resolveImages(tmp, fragment.base);
   const sections = [...tmp.children].filter((el) => el.tagName === 'DIV');
 
