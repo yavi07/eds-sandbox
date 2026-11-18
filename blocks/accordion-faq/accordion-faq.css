@@ -1,0 +1,80 @@
+/* accordion-faq: native <details>/<summary> rows (source: WKND .cmp-accordion) */
+.accordion-faq {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+}
+
+/* question row: 13.33px padding + 20px line + 2px divider = 48.67px (source button) */
+.accordion-faq .accordion-faq-item-label {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  padding: 13.3333px 47px 13.3333px 21.3333px;
+  border-bottom: 2px solid var(--border-color);
+  color: #000;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion-faq .accordion-faq-item-label::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-faq .accordion-faq-item-label > * {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
+/* open row drops its divider (source) */
+.accordion-faq .accordion-faq-item[open] > .accordion-faq-item-label {
+  border-bottom: 0;
+}
+
+/* thin plus icon (source icon font glyph, 21px box at the right padding edge) */
+.accordion-faq .accordion-faq-item-label::before,
+.accordion-faq .accordion-faq-item-label::after {
+  position: absolute;
+  top: 22.3333px;
+  right: 13.3333px;
+  width: 21px;
+  height: 2px;
+  background-color: currentcolor;
+  content: '';
+  transition: transform 0.2s;
+}
+
+.accordion-faq .accordion-faq-item-label::after {
+  transform: rotate(90deg);
+}
+
+/* open: vertical bar folds onto the horizontal one, leaving a minus */
+.accordion-faq .accordion-faq-item[open] > .accordion-faq-item-label::after {
+  transform: rotate(0deg);
+}
+
+/* answer panel */
+.accordion-faq .accordion-faq-item-body {
+  padding: 7px 0 0 7px;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.accordion-faq .accordion-faq-item-body p {
+  margin: 0 0 13.5px;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  line-height: 24.5px;
+  text-align: justify;
+}

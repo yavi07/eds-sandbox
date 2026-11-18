@@ -1,0 +1,31 @@
+{
+  "variantName": "columns-author-bio",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "moderate",
+    "hasGrid": true,
+    "imagePattern": "noimg",
+    "structure": "heading + text + link",
+    "purpose": "Author headshot, name/role and social links side by side at the end of an article"
+  },
+  "contentPattern": {
+    "structure": "one row: headshot | name heading + role | social links (cells classified by content, any order)"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_5a4e18ae9e4b"
+  ],
+  "usage": {
+    "pagesUsing": [
+      "https://wknd.site/us/en/magazine/arctic-surfing.html",
+      "https://wknd.site/us/en/magazine/guide-la-skateparks.html",
+      "https://wknd.site/us/en/magazine/san-diego-surf.html",
+      "https://wknd.site/us/en/magazine/ski-touring.html",
+      "https://wknd.site/us/en/magazine/western-australia.html"
+    ],
+    "reuseCount": 5
+  },
+  "reuseGuidance": "Use for an author byline/bio box. Social links get data-network (facebook, twitter, instagram, ...) for icon styling in the design pass."
+}

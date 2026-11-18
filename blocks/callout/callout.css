@@ -1,0 +1,70 @@
+/* callout: source .cmp-text--quote. The grey box spans the article column plus its gutters
+   (source 776px box around the 748px text column); content sits 32px in (14px + 18px). */
+.callout {
+  margin: 18px calc(-1 * var(--content-gutter));
+  padding: 0 14px;
+  background-color: var(--light-color);
+  color: var(--text-color);
+}
+
+/* quote (source blockquote): Asar 36/54 with a short accent rule near its bottom edge */
+.callout .callout-body {
+  position: relative;
+  padding: 18px 18px 0;
+}
+
+.callout .callout-body:only-child {
+  padding-bottom: 18px;
+}
+
+.callout .callout-body > * {
+  margin: 0;
+  padding: 0 14px;
+  font-family: var(--heading-font-family);
+  font-size: 36px;
+  line-height: 54px;
+  text-align: left;
+  color: var(--text-color);
+}
+
+.callout .callout-body > :first-child {
+  padding-top: 14px;
+}
+
+.callout .callout-body > :last-child {
+  padding-bottom: 16px;
+}
+
+.callout .callout-body > * + * {
+  margin-top: 18px;
+}
+
+/* the rule shows only when an attribution follows the quote */
+.callout .callout-body:not(:only-child)::after {
+  position: absolute;
+  bottom: 4px;
+  left: 32px;
+  width: 80px;
+  height: 2px;
+  background-color: var(--accent-color);
+  content: '';
+}
+
+/* attribution (source p after the blockquote) */
+.callout .callout-attribution {
+  padding: 18px;
+}
+
+.callout .callout-attribution > * {
+  margin: 0 0 13.5px;
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  line-height: 45px;
+  text-align: justify;
+  color: var(--text-color);
+}
+
+/* source resets the authored underline (u computes text-decoration-line: none) */
+.callout u {
+  text-decoration: none;
+}

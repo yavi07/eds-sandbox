@@ -1,26 +1,198 @@
-footer {
-  border-top: 1px solid var(--border-color);
-  background: linear-gradient(180deg, var(--surface-color), var(--background-color));
-  color: var(--muted-color);
-  font-size: var(--body-font-size-xs);
+/* WKND footer — mobile-first; desktop row layout from 1200px */
+footer .footer {
+  margin-top: 48px;
+  padding: 16px 0 24px;
+  background-color: #202020;
+  color: #f7f7f7;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', helvetica, arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer .footer-inner {
+  box-sizing: border-box;
+  max-width: 1192px;
+  margin: 0 auto;
+  padding: 0 14px;
 }
 
-footer .footer p {
+footer .footer .footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+footer .footer .footer-top > * {
+  box-sizing: border-box;
+  padding: 0 14px;
+}
+
+/* brand logo */
+footer .footer .footer-brand {
+  width: 33.3333%;
+  margin: 0;
+
+  /* stands in for the text strut below the inline logo (stable in any doc mode) */
+  padding-bottom: 7px;
+}
+
+footer .footer .footer-brand a:any-link {
+  display: block;
+  max-width: 8rem;
+  border: none;
+}
+
+footer .footer .footer-brand a:any-link,
+footer .footer .footer-brand a:hover {
+  color: #f7f7f7;
+  text-decoration: none;
+}
+
+footer .footer .footer-brand img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 7px 0;
+}
+
+/* navigation */
+footer .footer .footer-nav {
+  width: 66.6667%;
+  padding-top: 10px;
+}
+
+footer .footer .footer-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer .footer .footer-nav-parent > a:any-link {
+  display: none;
+}
+
+footer .footer .footer-nav-item {
+  margin-bottom: 1rem;
+}
+
+footer .footer .footer-nav a:any-link {
+  padding: 15px 17px;
+  color: #ebebeb;
+  font-size: 14px;
+  line-height: 21px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+footer .footer .footer-nav a:hover,
+footer .footer .footer-nav a:focus {
+  color: #ebebeb;
+  text-decoration: underline;
+  text-decoration-color: currentcolor;
+  text-underline-offset: auto;
+}
+
+footer .footer .footer-nav a[aria-current='page'] {
+  color: #f7f7f7;
+  text-decoration: underline;
+  text-decoration-color: currentcolor;
+}
+
+/* follow us + social icons */
+footer .footer .footer-follow-title {
+  width: 100%;
+  margin: 21.28px 0;
+  color: #ebebeb;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+footer .footer .footer-social {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  list-style: none;
+}
+
+footer .footer .footer-social li {
   margin: 0;
 }
 
-footer .footer a:any-link {
-  color: var(--link-color);
+footer .footer .footer-social a:any-link {
+  display: block;
+  box-sizing: border-box;
+  width: 48px;
+  height: 48px;
+  padding: 18px 0 0 14px;
+  background-color: #ebebeb;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+footer .footer .footer-social a:any-link,
+footer .footer .footer-social a:hover {
+  color: #202020;
+  text-decoration: none;
+}
+
+footer .footer .footer-social-icon {
+  display: block;
+  width: 34px;
+  height: 17.5px;
+  background-color: #202020;
+  mask: var(--icon-url) left top / auto 17.5px no-repeat;
+}
+
+/* legal text */
+footer .footer .footer-legal {
+  display: flow-root;
+  margin-top: 36px;
+  padding: 0 14px;
+}
+
+footer .footer .footer-legal p {
+  margin: 0 0 13.5px;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: justify;
+}
+
+footer .footer .footer-legal a:any-link,
+footer .footer .footer-legal a:hover {
+  color: #f7f7f7;
+  text-decoration: underline;
+  text-decoration-color: currentcolor;
+  text-underline-offset: auto;
+}
+
+@media (width >= 1200px) {
+  footer .footer .footer-brand {
+    width: 16.6667%;
+  }
+
+  footer .footer .footer-nav {
+    width: 50%;
+    padding-top: 15px;
+  }
+
+  footer .footer .footer-nav ul ul {
+    display: flex;
+  }
+
+  footer .footer .footer-nav-item {
+    margin-bottom: 0;
+  }
+
+  footer .footer .footer-follow-title {
+    width: 16.6667%;
+    text-align: right;
+  }
+
+  footer .footer .footer-top > .footer-social {
+    width: 16.6667%;
+    padding: 0;
   }
 }
