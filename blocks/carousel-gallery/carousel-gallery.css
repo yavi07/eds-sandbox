@@ -1,0 +1,257 @@
+/* both looks are full-bleed and show one slide at a time
+   (source .cmp-carousel--mini / .cmp-carousel--hero) */
+main > .section > .carousel-gallery-wrapper:has(> .carousel-gallery) {
+  max-width: none;
+  padding: 0;
+}
+
+.carousel-gallery {
+  position: relative;
+}
+
+.carousel-gallery .carousel-gallery-slides,
+.carousel-gallery .carousel-gallery-indicators {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carousel-gallery .carousel-gallery-slides {
+  display: flex;
+  overflow: scroll clip;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel-gallery .carousel-gallery-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-gallery .carousel-gallery-slide {
+  position: relative;
+  display: flex;
+  flex: 0 0 100%;
+  flex-direction: column;
+  width: 100%;
+  scroll-snap-align: start;
+}
+
+.carousel-gallery .carousel-gallery-slide-image {
+  line-height: 0;
+}
+
+.carousel-gallery .carousel-gallery-slide[aria-hidden='true'] {
+  display: none;
+}
+
+.carousel-gallery .carousel-gallery-slide-image img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* default (gallery): 400px tall photo with a 7px margin above and below */
+.carousel-gallery:not(.image) .carousel-gallery-slide-image img {
+  display: block;
+  height: 400px;
+  margin: 7px 0;
+  aspect-ratio: auto;
+}
+
+.carousel-gallery .carousel-gallery-slide-content {
+  padding: 24px;
+  background-color: var(--background-color, #fff);
+}
+
+.carousel-gallery .carousel-gallery-slide-content > :first-child {
+  margin-top: 0;
+}
+
+.carousel-gallery .carousel-gallery-slide-content > :last-child {
+  margin-bottom: 0;
+}
+
+/* controls: dots centered in the space left of the arrows (82px),
+   16px below the image; arrows 13px from the right, 7px below the image */
+.carousel-gallery .carousel-gallery-controls {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 16px 82px 0 0;
+}
+
+.carousel-gallery .carousel-gallery-indicators {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 14px;
+  line-height: 0;
+}
+
+.carousel-gallery .carousel-gallery-indicator button {
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  background-color: rgb(175 175 175);
+  cursor: pointer;
+}
+
+.carousel-gallery .carousel-gallery-indicator button[aria-current='true'] {
+  background-color: rgb(0 0 0 / 80%);
+}
+
+.carousel-gallery .carousel-gallery-arrows {
+  position: absolute;
+  top: 7px;
+  right: 13px;
+  display: flex;
+  gap: 18px;
+}
+
+/* source arrows are 26x24 UA-styled buttons with an arrow glyph */
+.carousel-gallery .carousel-gallery-arrows button {
+  position: relative;
+  width: 26px;
+  height: 24px;
+  margin: 0;
+  border: 0;
+  padding: 1px 0 1px 6px;
+  background: none;
+  color: #000;
+  font-family: arial, sans-serif;
+  font-size: 13.3333px;
+  line-height: normal;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* arrow glyph: shaft + head */
+.carousel-gallery .carousel-gallery-arrows button::before,
+.carousel-gallery .carousel-gallery-arrows button::after {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 3px); /* glyph sits in the content box (after the 6px left padding) */
+  content: '';
+}
+
+.carousel-gallery .carousel-gallery-arrows button::before {
+  width: 20px;
+  height: 2px;
+  background-color: currentcolor;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-gallery .carousel-gallery-arrows button::after {
+  width: 10px;
+  height: 10px;
+  border: solid currentcolor;
+  border-width: 2px 2px 0 0;
+}
+
+.carousel-gallery .carousel-gallery-prev::after {
+  transform: translate(-90%, -50%) rotate(-135deg);
+}
+
+.carousel-gallery .carousel-gallery-next::after {
+  transform: translate(-10%, -50%) rotate(45deg);
+}
+
+/* option: image - full-bleed hero: text panel overlapping the bottom of
+   the image (source .cmp-carousel--hero) */
+.carousel-gallery.image .carousel-gallery-slide-content {
+  padding: 7px 14px 0;
+  background-color: #fff;
+  color: #202020;
+}
+
+.carousel-gallery.image .carousel-gallery-slide-content h2 {
+  margin: 18px 0 0;
+  font-family: var(--heading-font-family);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 54px;
+  color: #202020;
+}
+
+.carousel-gallery.image .carousel-gallery-slide-content p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 31.5px;
+  text-align: left;
+  color: #202020;
+}
+
+.carousel-gallery.image .carousel-gallery-slide-content p:has(> a:only-child) {
+  margin-top: 18px;
+}
+
+main .carousel-gallery.image .carousel-gallery-slide-content p > a:only-child:any-link {
+  display: inline-block;
+  height: auto;
+  padding: 14px 35px;
+  border: 0;
+  border-radius: 0;
+  background-color: #ffea00;
+  color: #202020;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: left;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* controls: arrows top-right, dots below them on the left (mobile) */
+.carousel-gallery.image .carousel-gallery-controls {
+  display: block;
+  height: 90px;
+  padding: 0;
+}
+
+.carousel-gallery.image .carousel-gallery-indicators {
+  position: absolute;
+  top: 41px;
+  left: 21px;
+}
+
+.carousel-gallery.image .carousel-gallery-arrows {
+  top: 18px;
+}
+
+@media (width >= 900px) {
+  .carousel-gallery.image .carousel-gallery-slide-image img {
+    aspect-ratio: auto;
+    height: 640px;
+  }
+
+  .carousel-gallery.image .carousel-gallery-slide-content {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    box-sizing: border-box;
+    width: calc(var(--content-max-width) + 28px);
+    max-width: 100%;
+    padding: 0 28px 9px;
+    transform: translateX(-50%);
+  }
+
+  .carousel-gallery.image .carousel-gallery-controls {
+    height: 100px;
+  }
+
+  .carousel-gallery.image .carousel-gallery-indicators {
+    top: 18px;
+    left: calc(50% - 70px);
+  }
+
+  .carousel-gallery.image .carousel-gallery-arrows {
+    top: 9px;
+  }
+}

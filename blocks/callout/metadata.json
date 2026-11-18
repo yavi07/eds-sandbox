@@ -1,0 +1,30 @@
+{
+  "variantName": "callout",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "",
+    "purpose": "Grey boxed pull quote or definition inside article content, with optional attribution"
+  },
+  "contentPattern": {
+    "structure": "row 1: quote/callout text (may include a CTA link); row 2 (optional): attribution"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_3f3fbb7e2027"
+  ],
+  "usage": {
+    "pagesUsing": [
+      "https://wknd.site/us/en/magazine.html",
+      "https://wknd.site/us/en/magazine/guide-la-skateparks.html",
+      "https://wknd.site/us/en/magazine/ski-touring.html",
+      "https://wknd.site/us/en/magazine/western-australia.html"
+    ],
+    "reuseCount": 4
+  },
+  "reuseGuidance": "Use for pull quotes and boxed asides in article bodies. The short accent rule shows only when an attribution is present."
+}

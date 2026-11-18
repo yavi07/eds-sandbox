@@ -1,0 +1,36 @@
+{
+  "variantName": "adventure-fact",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "link",
+    "purpose": "Label/value trip fact (e.g. Activity: Rock Climbing) in the adventure details sidebar"
+  },
+  "contentPattern": {
+    "structure": "one row per fact: label | value; a single cell is read as first paragraph = label, rest = value"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_820680ebe2a1"
+  ],
+  "usage": {
+    "pagesUsing": [
+      "https://wknd.site/us/en.html",
+      "https://wknd.site/us/en/adventures/beervana-portland.html",
+      "https://wknd.site/us/en/adventures/climbing-new-zealand.html",
+      "https://wknd.site/us/en/adventures/cycling-tuscany.html",
+      "https://wknd.site/us/en/adventures/downhill-skiing-wyoming.html",
+      "https://wknd.site/us/en/adventures/riverside-camping-australia.html",
+      "https://wknd.site/us/en/adventures/ski-touring-mont-blanc.html",
+      "https://wknd.site/us/en/adventures/surf-camp-costa-rica.html",
+      "https://wknd.site/us/en/adventures/whistler-mountain-biking.html",
+      "https://wknd.site/us/en/magazine/guide-la-skateparks.html"
+    ],
+    "reuseCount": 10
+  },
+  "reuseGuidance": "Use for short label/value facts. Several facts may be authored in one block (one row each) or as separate blocks."
+}

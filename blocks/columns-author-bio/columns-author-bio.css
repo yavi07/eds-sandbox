@@ -1,0 +1,133 @@
+/* columns-author-bio: article byline (source .experiencefragment > .cmp-byline + btn-list).
+   The source block spans its grid cell including the 14px gutters, opens with a 2px separator
+   (64px margins) and holds a 60px round photo, Asar name, uppercase grey roles and a dark bar
+   of 48px social icons. Below 1200px (source tablet/phone grid) the icons wrap under the byline. */
+.columns-author-bio {
+  display: flow-root;
+  margin-inline: calc(-1 * var(--content-gutter, 14px));
+  color: var(--text-color);
+}
+
+.columns-author-bio::before {
+  content: "";
+  display: block;
+  margin: 64px var(--content-gutter, 14px);
+  border-top: 2px solid var(--border-color);
+}
+
+.columns-author-bio .columns-author-bio-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.columns-author-bio .columns-author-bio-image {
+  flex: 0 0 auto;
+  margin-left: var(--content-gutter, 14px);
+  line-height: 0;
+}
+
+.columns-author-bio .columns-author-bio-image img {
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 7px 0;
+  border-radius: 30px;
+  object-fit: cover;
+}
+
+.columns-author-bio .columns-author-bio-text {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0 var(--content-gutter, 14px) 0 25px;
+}
+
+.columns-author-bio .columns-author-bio-text > :is(h1, h2, h3, h4, h5, h6) {
+  margin: 0 0 4px;
+  padding-top: 8px;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-l);
+  font-weight: 400;
+  line-height: 36px;
+  color: var(--text-color);
+}
+
+.columns-author-bio .columns-author-bio-text p {
+  margin: 0 0 13.5px;
+  font-size: var(--body-font-size-xs);
+  line-height: 30px;
+  color: var(--muted-color);
+  text-align: justify;
+  text-transform: uppercase;
+}
+
+.columns-author-bio .columns-author-bio-social {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  padding-inline: var(--content-gutter, 14px);
+  line-height: 0;
+}
+
+.columns-author-bio .columns-author-bio-social ul {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: var(--text-color);
+}
+
+.columns-author-bio .columns-author-bio-social li {
+  margin: 0;
+  padding: 0;
+}
+
+.columns-author-bio .columns-author-bio-social a:any-link {
+  position: relative;
+  display: block;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  background-color: var(--text-color);
+  color: var(--light-color);
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  line-height: 14px;
+  text-decoration: none;
+  text-indent: 100%;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.columns-author-bio .columns-author-bio-social a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--light-color);
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: auto 17.5px;
+}
+
+.columns-author-bio .columns-author-bio-social a[data-network="facebook"]::before {
+  mask-image: url("/icons/facebook.svg");
+}
+
+.columns-author-bio .columns-author-bio-social a[data-network="twitter"]::before {
+  mask-image: url("/icons/twitter.svg");
+}
+
+.columns-author-bio .columns-author-bio-social a[data-network="instagram"]::before {
+  mask-image: url("/icons/instagram.svg");
+}
+
+/* source default grid (>= 1200px): byline in 9 of 12 columns, icons start the last 3 */
+@media (width >= 1200px) {
+  .columns-author-bio .columns-author-bio-text {
+    flex: 0 0 calc(75% - 113px);
+  }
+
+  .columns-author-bio .columns-author-bio-social {
+    flex: 0 0 auto;
+    padding-inline: 0;
+  }
+}

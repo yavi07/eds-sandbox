@@ -1,0 +1,35 @@
+{
+  "variantName": "hero-teaser",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "moderate",
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "heading + link + image",
+    "purpose": "Promotes one item with image, title, description and CTA"
+  },
+  "contentPattern": {
+    "structure": "image (own row or cell) + text (optional eyebrow paragraph, heading, description, CTA link)"
+  },
+  "options": [
+    {
+      "class": "image-beside-text-panel",
+      "label": "Image Beside Text Panel"
+    }
+  ],
+  "memberVariantIds": [
+    "v_1fd1a2482adf",
+    "v_4bab816e3352"
+  ],
+  "usage": {
+    "pagesUsing": [
+      "https://wknd.site/us/en.html",
+      "https://wknd.site/us/en/adventures.html",
+      "https://wknd.site/us/en/magazine.html"
+    ],
+    "reuseCount": 3
+  },
+  "reuseGuidance": "Default: full-width image with an overlapping text box. Use image-beside-text-panel for image left, grey text panel right (e.g. Featured Article)."
+}

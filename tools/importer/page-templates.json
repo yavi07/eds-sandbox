@@ -1,0 +1,756 @@
+{
+  "templates": [
+    {
+      "name": "magazine-landing",
+      "urls": [
+        "https://wknd.site/us/en/magazine.html"
+      ],
+      "description": "Section landing with featured article teaser, article card grid, members-only callout and teaser callouts",
+      "blocks": [
+        {
+          "name": "hero-teaser",
+          "instances": [
+            "div.teaser.cmp-teaser--featured"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en/magazine.html": [
+              "#container-0e56066edf > div > div.teaser.cmp-teaser--featured.aem-GridColumn.aem-GridColumn--default--12"
+            ]
+          }
+        },
+        {
+          "name": "cards-article",
+          "instances": [
+            "div.image-list.list",
+            "div.teaser.cmp-teaser--secure"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en/magazine.html": [
+              "#container-0e56066edf > div > div.image-list.list.aem-GridColumn.aem-GridColumn--default--12"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "magazine-intro",
+          "name": "Magazine title, featured article, all articles, members-only intro",
+          "selector": [
+            "div.teaser.cmp-teaser--featured"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-teaser",
+            "cards-article"
+          ],
+          "defaultContent": [
+            "div.title",
+            "div.text"
+          ]
+        },
+        {
+          "id": "members-only-cards",
+          "name": "Separator and locked members-only cards",
+          "selector": [
+            "div.separator.cmp-separator--space-medium"
+          ],
+          "style": "separator, space-medium",
+          "nested": true,
+          "blocks": [
+            "cards-article"
+          ],
+          "defaultContent": []
+        }
+      ]
+    },
+    {
+      "name": "adventures-landing",
+      "urls": [
+        "https://wknd.site/us/en/adventures.html"
+      ],
+      "description": "Section landing with page title, captioned hero image and category-filtered card listing",
+      "blocks": [
+        {
+          "name": "hero-teaser",
+          "instances": [
+            "div.teaser.cmp-teaser--hero"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en/adventures.html": [
+              "#container-6069f81f2b > div > div"
+            ]
+          }
+        },
+        {
+          "name": "cards-article",
+          "instances": [
+            "div.tabs.panelcontainer"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en/adventures.html": [
+              "#container-7ea6258004 > div > div.tabs.panelcontainer.aem-GridColumn.aem-GridColumn--default--12"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "page-title",
+          "name": "Adventures page title",
+          "selector": [
+            ".cmp-layout-container--fixed:has(div.title):not(:has(div.tabs))"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "div.title"
+          ]
+        },
+        {
+          "id": "hero",
+          "name": "Hero teaser",
+          "selector": [
+            "div.teaser.cmp-teaser--hero"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-teaser"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "current-adventures",
+          "name": "Current adventures with category filter tabs",
+          "selector": [
+            ".cmp-layout-container--fixed:has(div.tabs)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-article"
+          ],
+          "defaultContent": [
+            "div.title"
+          ]
+        },
+        {
+          "id": "separator-end",
+          "name": "Closing separator",
+          "selector": [
+            ".cmp-layout-container--fixed:has(div.tabs) div.separator"
+          ],
+          "style": "separator",
+          "nested": true,
+          "blocks": [],
+          "defaultContent": []
+        }
+      ]
+    },
+    {
+      "name": "about-us",
+      "urls": [
+        "https://wknd.site/us/en/about-us.html"
+      ],
+      "description": "Team page with page title and grouped profile card grids (photo, role, social links)",
+      "blocks": [
+        {
+          "name": "cards-article",
+          "instances": [
+            "section.experiencefragment.cmp-experience-fragment--contributor"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "contributors",
+          "name": "About Us title and contributors",
+          "selector": [
+            "main div.title:not(.cmp-title--underline)"
+          ],
+          "style": "small-text",
+          "blocks": [
+            "cards-article"
+          ],
+          "defaultContent": [
+            "div.title",
+            "div.text"
+          ]
+        },
+        {
+          "id": "guides",
+          "name": "WKND guides",
+          "selector": [
+            "div.title.cmp-title--underline ~ div.title.cmp-title--underline"
+          ],
+          "style": "small-text",
+          "nested": true,
+          "blocks": [
+            "cards-article"
+          ],
+          "defaultContent": [
+            "div.title",
+            "div.text"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "adventure-detail",
+      "urls": [
+        "https://wknd.site/us/en/adventures/bali-surf-camp.html",
+        "https://wknd.site/us/en/adventures/beervana-portland.html",
+        "https://wknd.site/us/en/adventures/climbing-new-zealand.html",
+        "https://wknd.site/us/en/adventures/colorado-rock-climbing.html",
+        "https://wknd.site/us/en/adventures/cycling-southern-utah.html",
+        "https://wknd.site/us/en/adventures/cycling-tuscany.html",
+        "https://wknd.site/us/en/adventures/downhill-skiing-wyoming.html",
+        "https://wknd.site/us/en/adventures/gastronomic-marais-tour.html",
+        "https://wknd.site/us/en/adventures/napa-wine-tasting.html",
+        "https://wknd.site/us/en/adventures/riverside-camping-australia.html",
+        "https://wknd.site/us/en/adventures/ski-touring-mont-blanc.html",
+        "https://wknd.site/us/en/adventures/surf-camp-costa-rica.html",
+        "https://wknd.site/us/en/adventures/tahoe-skiing.html",
+        "https://wknd.site/us/en/adventures/west-coast-cycling.html",
+        "https://wknd.site/us/en/adventures/whistler-mountain-biking.html",
+        "https://wknd.site/us/en/adventures/yosemite-backpacking.html"
+      ],
+      "description": "Detail page with image gallery carousel, title with trip fact sidebar, and tabbed content (overview, itinerary, what to bring)",
+      "blocks": [
+        {
+          "name": "carousel-gallery",
+          "instances": [
+            "div.carousel.cmp-carousel--mini"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en/adventures/bali-surf-camp.html": [
+              "#container-3fc977da6e > div > div.carousel.panelcontainer.cmp-carousel--mini.aem-GridColumn.aem-GridColumn--default--12"
+            ],
+            "https://wknd.site/us/en/adventures/beervana-portland.html": [
+              "#container-9265034fbc > div.carousel.panelcontainer.cmp-carousel--mini"
+            ],
+            "https://wknd.site/us/en/adventures/climbing-new-zealand.html": [
+              "#container-ed97fcfff5 > div.carousel.panelcontainer.cmp-carousel--mini"
+            ],
+            "https://wknd.site/us/en/adventures/colorado-rock-climbing.html": [
+              "#container-8aabbbb1a4 > div > div.carousel.panelcontainer.cmp-carousel--mini.aem-GridColumn.aem-GridColumn--default--12"
+            ],
+            "https://wknd.site/us/en/adventures/cycling-southern-utah.html": [
+              "#container-1244357321 > div > div.carousel.panelcontainer.cmp-carousel--mini.aem-GridColumn.aem-GridColumn--default--12"
+            ],
+            "https://wknd.site/us/en/adventures/cycling-tuscany.html": [
+              "#container-0a9e195c1b > div.carousel.panelcontainer.cmp-carousel--mini"
+            ],
+            "https://wknd.site/us/en/adventures/downhill-skiing-wyoming.html": [
+              "#container-6ac9572856 > div.carousel.panelcontainer.cmp-carousel--mini"
+            ],
+            "https://wknd.site/us/en/adventures/gastronomic-marais-tour.html": [
+              "#container-f825f1979f > div > div.carousel.panelcontainer.cmp-carousel--mini.aem-GridColumn.aem-GridColumn--default--12"
+            ],
+            "https://wknd.site/us/en/adventures/napa-wine-tasting.html": [
+              "#container-a99e80f491 > div > div.carousel.panelcontainer.cmp-carousel--mini.aem-GridColumn.aem-GridColumn--default--12"
+            ],
+            "https://wknd.site/us/en/adventures/riverside-camping-australia.html": [
+              "#container-81a420a938 > div.carousel.panelcontainer.cmp-carousel--mini"
+            ],
+            "https://wknd.site/us/en/adventures/ski-touring-mont-blanc.html": [
+              "#container-876f8877ae > div.carousel.panelcontainer.cmp-carousel--mini"
+            ],
+            "https://wknd.site/us/en/adventures/surf-camp-costa-rica.html": [
+              "#container-bfe3376af3 > div.carousel.panelcontainer.cmp-carousel--mini"
+            ],
+            "https://wknd.site/us/en/adventures/tahoe-skiing.html": [
+              "#container-e31226bb97 > div > div.carousel.panelcontainer.cmp-carousel--mini.aem-GridColumn.aem-GridColumn--default--12"
+            ],
+            "https://wknd.site/us/en/adventures/west-coast-cycling.html": [
+              "#container-a7c6865ac5 > div > div.carousel.panelcontainer.cmp-carousel--mini.aem-GridColumn.aem-GridColumn--default--12"
+            ],
+            "https://wknd.site/us/en/adventures/whistler-mountain-biking.html": [
+              "#container-d7269ce1e5 > div.carousel.panelcontainer.cmp-carousel--mini"
+            ],
+            "https://wknd.site/us/en/adventures/yosemite-backpacking.html": [
+              "#container-8484a21407 > div > div.carousel.panelcontainer.cmp-carousel--mini.aem-GridColumn.aem-GridColumn--default--12"
+            ]
+          }
+        },
+        {
+          "name": "adventure-fact",
+          "instances": [
+            "div.contentfragment.cmp-contentfragment--elements"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en/adventures/beervana-portland.html": [
+              "#contentfragment-00299ec5f5 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--activity",
+              "#contentfragment-00299ec5f5 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--adventureType",
+              "#contentfragment-00299ec5f5 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--tripLength",
+              "#contentfragment-00299ec5f5 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--groupSize",
+              "#contentfragment-00299ec5f5 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--difficulty",
+              "#contentfragment-00299ec5f5 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--price"
+            ],
+            "https://wknd.site/us/en/adventures/climbing-new-zealand.html": [
+              "#contentfragment-71006a1398 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--activity",
+              "#contentfragment-71006a1398 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--adventureType",
+              "#contentfragment-71006a1398 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--tripLength",
+              "#contentfragment-71006a1398 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--groupSize",
+              "#contentfragment-71006a1398 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--difficulty",
+              "#contentfragment-71006a1398 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--price"
+            ],
+            "https://wknd.site/us/en/adventures/cycling-tuscany.html": [
+              "#contentfragment-78977aa9be > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--activity",
+              "#contentfragment-78977aa9be > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--adventureType",
+              "#contentfragment-78977aa9be > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--tripLength",
+              "#contentfragment-78977aa9be > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--groupSize",
+              "#contentfragment-78977aa9be > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--difficulty",
+              "#contentfragment-78977aa9be > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--price"
+            ],
+            "https://wknd.site/us/en/adventures/downhill-skiing-wyoming.html": [
+              "#contentfragment-658eefb9b1 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--activity",
+              "#contentfragment-658eefb9b1 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--adventureType",
+              "#contentfragment-658eefb9b1 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--tripLength",
+              "#contentfragment-658eefb9b1 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--groupSize",
+              "#contentfragment-658eefb9b1 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--difficulty",
+              "#contentfragment-658eefb9b1 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--price"
+            ],
+            "https://wknd.site/us/en/adventures/riverside-camping-australia.html": [
+              "#contentfragment-36b58afd20 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--activity",
+              "#contentfragment-36b58afd20 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--adventureType",
+              "#contentfragment-36b58afd20 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--tripLength",
+              "#contentfragment-36b58afd20 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--groupSize",
+              "#contentfragment-36b58afd20 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--difficulty",
+              "#contentfragment-36b58afd20 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--price"
+            ],
+            "https://wknd.site/us/en/adventures/ski-touring-mont-blanc.html": [
+              "#contentfragment-047cc96d7d > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--activity",
+              "#contentfragment-047cc96d7d > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--adventureType",
+              "#contentfragment-047cc96d7d > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--tripLength",
+              "#contentfragment-047cc96d7d > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--groupSize",
+              "#contentfragment-047cc96d7d > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--difficulty",
+              "#contentfragment-047cc96d7d > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--price"
+            ],
+            "https://wknd.site/us/en/adventures/surf-camp-costa-rica.html": [
+              "#contentfragment-a72813719b > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--activity",
+              "#contentfragment-a72813719b > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--adventureType",
+              "#contentfragment-a72813719b > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--tripLength",
+              "#contentfragment-a72813719b > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--groupSize",
+              "#contentfragment-a72813719b > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--difficulty",
+              "#contentfragment-a72813719b > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--price"
+            ],
+            "https://wknd.site/us/en/adventures/whistler-mountain-biking.html": [
+              "#contentfragment-029165e1a5 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--activity",
+              "#contentfragment-029165e1a5 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--adventureType",
+              "#contentfragment-029165e1a5 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--tripLength",
+              "#contentfragment-029165e1a5 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--groupSize",
+              "#contentfragment-029165e1a5 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--difficulty",
+              "#contentfragment-029165e1a5 > dl > div.cmp-contentfragment__element.cmp-contentfragment__element--price"
+            ]
+          }
+        },
+        {
+          "name": "tabs-adventure",
+          "instances": [
+            "div.tabs.panelcontainer"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en/adventures/bali-surf-camp.html": [
+              "#container-52a201bd68 > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/beervana-portland.html": [
+              "#container-637ff60361 > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/climbing-new-zealand.html": [
+              "#container-b24611da1b > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/colorado-rock-climbing.html": [
+              "#container-d3be088fce > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/cycling-southern-utah.html": [
+              "#container-0e4025cef9 > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/cycling-tuscany.html": [
+              "#container-c335da8a15 > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/downhill-skiing-wyoming.html": [
+              "#container-baf9138202 > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/gastronomic-marais-tour.html": [
+              "#container-e66719e029 > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/napa-wine-tasting.html": [
+              "#container-b3767c5983 > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/riverside-camping-australia.html": [
+              "#container-6269f53c58 > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/ski-touring-mont-blanc.html": [
+              "#container-1e8e161b13 > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/surf-camp-costa-rica.html": [
+              "#container-e48e910fac > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/tahoe-skiing.html": [
+              "#container-0245a02c6b > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/west-coast-cycling.html": [
+              "#container-40266217de > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/whistler-mountain-biking.html": [
+              "#container-ab39fb2c54 > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ],
+            "https://wknd.site/us/en/adventures/yosemite-backpacking.html": [
+              "#container-6d13c2a6dc > div > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "breadcrumb",
+          "name": "Breadcrumb",
+          "selector": [
+            "div.breadcrumb"
+          ],
+          "style": "breadcrumb",
+          "blocks": [],
+          "defaultContent": [
+            "div.breadcrumb"
+          ]
+        },
+        {
+          "id": "gallery",
+          "name": "Photo gallery",
+          "selector": [
+            "div.carousel.cmp-carousel--mini"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-gallery"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "details",
+          "name": "Title, trip facts sidebar and tabs",
+          "selector": [
+            ".cmp-layout-container--fixed:has(div.tabs)"
+          ],
+          "style": "sidebar, underline-title",
+          "blocks": [
+            "adventure-fact",
+            "tabs-adventure"
+          ],
+          "defaultContent": [
+            "div.title"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ai-search",
+      "urls": [
+        "https://wknd.site/us/en/ai-powered-search.html"
+      ],
+      "description": "Search page with a search input, AI summary toggle, disclaimer and paginated results list",
+      "blocks": [
+        {
+          "name": "search-ai",
+          "instances": [
+            "div.contentaisearch"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en/ai-powered-search.html": [
+              "#container-575eb41468 > div > main"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "search",
+          "name": "AI search",
+          "selector": [
+            "div.contentaisearch"
+          ],
+          "style": null,
+          "blocks": [
+            "search-ai"
+          ],
+          "defaultContent": []
+        }
+      ]
+    },
+    {
+      "name": "faq",
+      "urls": [
+        "https://wknd.site/us/en/faqs.html"
+      ],
+      "description": "Help page with hero image, intro text, accordion of questions and a contact callout",
+      "blocks": [
+        {
+          "name": "accordion-faq",
+          "instances": [
+            "div.accordion.panelcontainer"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en/faqs.html": [
+              "#container-0e3ddb0dd6 > div > div.accordion.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn.aem-GridColumn--default--8.aem-GridColumn--offset--phone--0"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "faq",
+          "name": "FAQs with contact aside",
+          "selector": [
+            "main.cmp-layout-container--fixed, .cmp-layout-container--fixed"
+          ],
+          "style": "aside, underline-title",
+          "blocks": [
+            "accordion-faq"
+          ],
+          "defaultContent": [
+            "div.title",
+            "div.image",
+            "div.text"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "homepage",
+      "urls": [
+        "https://wknd.site/us/en.html"
+      ],
+      "description": "Homepage with hero carousel, featured teasers, recent article card grid and destination callouts",
+      "blocks": [
+        {
+          "name": "carousel-gallery",
+          "instances": [
+            "div.carousel.cmp-carousel--hero"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en.html": [
+              "#container-0e03d6e9bb > div > div.carousel.panelcontainer.cmp-carousel--hero.aem-GridColumn.aem-GridColumn--default--12"
+            ]
+          }
+        },
+        {
+          "name": "hero-teaser",
+          "instances": [
+            "div.teaser.cmp-teaser--featured",
+            "div.teaser.cmp-teaser--hero.cmp-teaser--imagebottom"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en.html": [
+              "#container-9c4899b718 > div > div.teaser.cmp-teaser--featured.aem-GridColumn.aem-GridColumn--default--12",
+              "#container-0e03d6e9bb > div > div.teaser.cmp-teaser--hero.cmp-teaser--imagebottom.aem-GridColumn.aem-GridColumn--default--12"
+            ]
+          }
+        },
+        {
+          "name": "cards-article",
+          "instances": [
+            "div.image-list.list"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en.html": [
+              "#container-9c4899b718 > div > div.image-list.list.aem-GridColumn.aem-GridColumn--default--12",
+              "#container-4d3fed64ff > div > div.image-list.list.aem-GridColumn.aem-GridColumn--default--12"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero-carousel",
+          "name": "Hero carousel",
+          "selector": [
+            "div.carousel.cmp-carousel--hero"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-gallery"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "featured-and-recent",
+          "name": "Featured article and recent articles",
+          "selector": [
+            ".cmp-layout-container--fixed:has(.cmp-teaser--featured)"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-teaser",
+            "cards-article"
+          ],
+          "defaultContent": [
+            "div.title",
+            "div.button"
+          ]
+        },
+        {
+          "id": "separator-next-adventures",
+          "name": "Separator and Next Adventures title",
+          "selector": [
+            ".cmp-layout-container--fixed:has(.cmp-teaser--featured) div.separator"
+          ],
+          "style": "separator",
+          "nested": true,
+          "blocks": [],
+          "defaultContent": [
+            "div.title"
+          ]
+        },
+        {
+          "id": "next-adventure",
+          "name": "Next adventure teaser",
+          "selector": [
+            "div.teaser.cmp-teaser--hero.cmp-teaser--imagebottom"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-teaser"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "destinations",
+          "name": "Where do you want to go",
+          "selector": [
+            ".cmp-layout-container--fixed:has(.image-list):not(:has(.cmp-teaser--featured))"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-article"
+          ],
+          "defaultContent": [
+            "div.title",
+            "div.button"
+          ]
+        },
+        {
+          "id": "separator-end",
+          "name": "Closing separator",
+          "selector": [
+            ".cmp-layout-container--fixed:has(.image-list):not(:has(.cmp-teaser--featured)) div.separator"
+          ],
+          "style": "separator",
+          "nested": true,
+          "blocks": [],
+          "defaultContent": []
+        }
+      ]
+    },
+    {
+      "name": "magazine-article",
+      "urls": [
+        "https://wknd.site/us/en/magazine/arctic-surfing.html",
+        "https://wknd.site/us/en/magazine/guide-la-skateparks.html",
+        "https://wknd.site/us/en/magazine/san-diego-surf.html",
+        "https://wknd.site/us/en/magazine/ski-touring.html",
+        "https://wknd.site/us/en/magazine/western-australia.html"
+      ],
+      "description": "Long-form article with full-width hero image, breadcrumb, title and byline, rich body text with images and quotes, author bio and related article cards",
+      "blocks": [
+        {
+          "name": "callout",
+          "instances": [
+            "div.text.cmp-text--quote"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en/magazine/guide-la-skateparks.html": [
+              "#contentfragment-1dac24729b > div > div:nth-child(2) > div:nth-child(2) > div > div.text.cmp-text--quote.aem-GridColumn.aem-GridColumn--default--12"
+            ],
+            "https://wknd.site/us/en/magazine/ski-touring.html": [
+              "#contentfragment-906f1eecc2 > div > div:nth-child(2) > div:nth-child(2) > div > div.text.cmp-text--quote.aem-GridColumn.aem-GridColumn--default--12"
+            ],
+            "https://wknd.site/us/en/magazine/western-australia.html": [
+              "#contentfragment-9fa4745cf6 > div > div:nth-child(2) > div:nth-child(2)"
+            ]
+          }
+        },
+        {
+          "name": "file-download",
+          "instances": [
+            "div.download"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en/magazine/guide-la-skateparks.html": [
+              "#download-a32701ef65 > dl"
+            ]
+          }
+        },
+        {
+          "name": "columns-author-bio",
+          "instances": [
+            "div.experiencefragment:has(div.byline)"
+          ],
+          "pageInstances": {
+            "https://wknd.site/us/en/magazine/arctic-surfing.html": [
+              "#container-641a40404e > div.experiencefragment"
+            ],
+            "https://wknd.site/us/en/magazine/guide-la-skateparks.html": [
+              "#container-a7678c5eec > div.experiencefragment"
+            ],
+            "https://wknd.site/us/en/magazine/san-diego-surf.html": [
+              "#container-fca115ba19 > div.experiencefragment"
+            ],
+            "https://wknd.site/us/en/magazine/ski-touring.html": [
+              "#container-2a69b0225c > div.experiencefragment"
+            ],
+            "https://wknd.site/us/en/magazine/western-australia.html": [
+              "#container-fc6c2f500a > div.experiencefragment"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero",
+          "name": "Hero image",
+          "selector": [
+            ".cmp-layout-container--fixed div.image:has(img)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "div.image"
+          ]
+        },
+        {
+          "id": "breadcrumb",
+          "name": "Breadcrumb",
+          "selector": [
+            "div.breadcrumb"
+          ],
+          "style": "breadcrumb",
+          "blocks": [],
+          "defaultContent": [
+            "div.breadcrumb"
+          ]
+        },
+        {
+          "id": "article",
+          "name": "Article body with share and up next aside",
+          "selector": [
+            "div.breadcrumb ~ main.container",
+            "div.breadcrumb + *"
+          ],
+          "style": "aside, aside-inset",
+          "blocks": [
+            "callout",
+            "file-download",
+            "columns-author-bio"
+          ],
+          "defaultContent": [
+            "div.title",
+            "article.contentfragment",
+            "aside.cmp-layoutcontainer--sidebar"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "projectType": "da"
+  }
+}

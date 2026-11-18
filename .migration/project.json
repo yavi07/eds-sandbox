@@ -1,0 +1,11 @@
+{
+  "type": "da",
+  "sites": {
+    "eds-sandbox": {
+      "previewOrg": "yavi07",
+      "previewSite": "eds-sandbox",
+      "contentHostUrl": "https://content.da.live/yavi07/eds-sandbox/",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "variantName": "cards-article",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "moderate",
+    "hasGrid": true,
+    "imagePattern": "noimg",
+    "structure": "list + link + image",
+    "purpose": "Grid of article/adventure teasers: image, title, one-line description, each linking to a detail page"
+  },
+  "contentPattern": {
+    "structure": "one row per card: image | body (title, description, link); with category-filter-tabs, an optional trailing cell lists categories (comma-separated)"
+  },
+  "options": [
+    {
+      "class": "category-filter-tabs",
+      "label": "Category Filter Tabs"
+    }
+  ],
+  "memberVariantIds": [
+    "v_5c0733c8fd06",
+    "v_b5ba49ae85e4"
+  ],
+  "usage": {
+    "pagesUsing": [
+      "https://wknd.site/us/en.html",
+      "https://wknd.site/us/en/magazine.html",
+      "https://wknd.site/us/en/adventures.html"
+    ],
+    "reuseCount": 3
+  },
+  "reuseGuidance": "Use for teaser grids linking to detail pages. Add the category-filter-tabs option to show a client-side filter bar built from the per-card categories."
+}

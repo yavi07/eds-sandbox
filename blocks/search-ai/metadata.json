@@ -1,0 +1,27 @@
+{
+  "variantName": "search-ai",
+  "baseBlock": "search",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "field",
+    "purpose": "Look-only AI-powered search: input, AI summary toggle, summary with disclaimer, static results, Try again / Load more buttons"
+  },
+  "contentPattern": {
+    "structure": "key | value rows: Placeholder, Toggle, Summary, Disclaimer, Result (repeat per result), Try Again, Load More, Page Size; unknown or single-cell rows are results"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_004e49a6bea5"
+  ],
+  "usage": {
+    "pagesUsing": [
+      "https://wknd.site/us/en/ai-powered-search.html"
+    ],
+    "reuseCount": 1
+  },
+  "reuseGuidance": "Static demo only: no search or AI service is called. Search filters the authored results client-side, the toggle shows/hides the summary, Load more reveals the next page, Try again replays a loading state."
+}

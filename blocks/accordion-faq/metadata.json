@@ -1,0 +1,27 @@
+{
+  "variantName": "accordion-faq",
+  "baseBlock": "accordion",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "heading + button",
+    "purpose": "Expandable FAQ list; each question opens to reveal its answer"
+  },
+  "contentPattern": {
+    "structure": "one row per question: question | answer (rich text)"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_ad1f871ea703"
+  ],
+  "usage": {
+    "pagesUsing": [
+      "https://wknd.site/us/en/faqs.html"
+    ],
+    "reuseCount": 1
+  },
+  "reuseGuidance": "Use for any question/answer list. Rendered with native <details>/<summary>."
+}

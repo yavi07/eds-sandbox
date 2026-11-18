@@ -1,0 +1,75 @@
+/*
+ * Brand tokens extracted from https://wknd.site/us/en.html
+ * (see migration-work/brand.json). Values are source computed styles.
+ */
+
+:root {
+  /* brand palette (WKND clientlib-site) */
+  --brand-primary-color: #ffea00;
+  --brand-secondary-color: #202020;
+  --brand-third-color: #ebebeb;
+  --gray-color: #696969;
+
+  /* colors */
+  --background-color: #fff;
+  --surface-color: #f7f7f7;
+  --light-color: #ebebeb;
+  --dark-color: #202020;
+  --text-color: #202020;
+  --text-inverse-color: #ebebeb;
+  --muted-color: #696969;
+  --border-color: #ebebeb;
+  --link-color: #0045ff;
+  --link-hover-color: #0045ff;
+  --accent-color: #ffea00;
+  --accent-secondary-color: #202020;
+
+  /* surfaces (source uses square corners, no shadows) */
+  --radius-card: 0;
+  --radius-control: 0;
+  --shadow-card: none;
+  --shadow-glow: none;
+
+  /* fonts */
+  --body-font-family: 'Source Sans Pro', source-sans-pro-fallback, 'Helvetica Neue', helvetica, arial, sans-serif;
+  --heading-font-family: asar, asar-fallback, georgia, 'Times New Roman', times, serif;
+
+  /* body sizes (source is fixed at 18px across breakpoints) */
+  --body-font-size-m: 18px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
+  --body-line-height: 1.5;
+  --paragraph-line-height: 2.5;
+
+  /* heading sizes (source h1-h6, identical at 375/768/1200/1440) */
+  --heading-font-size-xxl: 40px;
+  --heading-font-size-xl: 36px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 16px;
+  --heading-font-size-s: 14px;
+  --heading-font-size-xs: 10px;
+  --heading-line-height: 1.5;
+
+  /* layout: .cmp-layout-container--fixed (873pt) with 14px grid gutters */
+  --content-max-width: 1164px;
+  --content-gutter: 14px;
+  --section-padding: 0;
+
+  /* buttons (.cmp-button) */
+  --button-height: 48px;
+  --button-font-size: 14px;
+  --button-padding: 16px 32px;
+}
+
+/* fallback fonts (approximate metrics) */
+@font-face {
+  font-family: source-sans-pro-fallback;
+  size-adjust: 88%;
+  src: local('Arial');
+}
+
+@font-face {
+  font-family: asar-fallback;
+  size-adjust: 90%;
+  src: local('Georgia');
+}

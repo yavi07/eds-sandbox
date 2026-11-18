@@ -1,0 +1,27 @@
+{
+  "variantName": "file-download",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": true,
+    "imagePattern": "noimg",
+    "structure": "",
+    "purpose": "Downloadable file link with file size and MIME type"
+  },
+  "contentPattern": {
+    "structure": "one row per file: link (text = file name) | size (optional) | type (optional, derived from extension when missing)"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_9fe4ae85c1fb"
+  ],
+  "usage": {
+    "pagesUsing": [
+      "https://wknd.site/us/en/magazine/guide-la-skateparks.html"
+    ],
+    "reuseCount": 1
+  },
+  "reuseGuidance": "Use for downloadable documents. For a plain inline link, default content is enough."
+}

@@ -10,6 +10,9 @@ import {
   loadSections,
   loadCSS,
   buildBlock,
+  readBlockConfig,
+  toCamelCase,
+  toClassName,
 } from './aem.js';
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
@@ -143,6 +146,56 @@ function decorateButtons(main) {
 }
 
 /**
+ * Applies Section Metadata (style → section classes, other keys → data attributes) and removes
+ * the metadata block. The vendored aem.js decorateSections does not handle it.
+ * @param {Element} main The container element
+ */
+function decorateSectionMetadata(main) {
+  main.querySelectorAll(':scope > .section').forEach((section) => {
+    section.querySelectorAll('div.section-metadata').forEach((meta) => {
+      const config = readBlockConfig(meta);
+      Object.keys(config).forEach((key) => {
+        if (key === 'style') {
+          String(config.style).split(',').map((v) => toClassName(v.trim())).filter(Boolean)
+            .forEach((cls) => section.classList.add(cls));
+        } else {
+          section.dataset[toCamelCase(key)] = config[key];
+        }
+      });
+      const wrapper = meta.parentElement;
+      meta.remove();
+      if (wrapper && wrapper !== section && !wrapper.children.length) wrapper.remove();
+    });
+  });
+}
+
+/**
+ * Aside sections (Style "aside"): the last default content that starts with a heading, and
+ * everything after it, form the right column; everything before it forms the main column.
+ * @param {Element} main The container element
+ */
+function decorateAsideSections(main) {
+  main.querySelectorAll(':scope > .section.aside').forEach((section) => {
+    const wrappers = [...section.children];
+    let start = -1;
+    wrappers.forEach((wrapper, i) => {
+      const first = wrapper.firstElementChild;
+      if (wrapper.classList.contains('default-content-wrapper') && first && /^H[1-6]$/.test(first.tagName)) {
+        start = i;
+      }
+    });
+    if (start <= 0) return;
+    const content = document.createElement('div');
+    content.className = 'section-main';
+    content.append(...wrappers.slice(0, start));
+    const aside = document.createElement('div');
+    aside.className = 'section-aside';
+    aside.append(...wrappers.slice(start));
+    section.append(content, aside);
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -151,7 +204,10 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionMetadata(main);
+  // blocks first: decorateBlocks only finds blocks at section > wrapper > block
   decorateBlocks(main);
+  decorateAsideSections(main);
   decorateButtons(main);
 }
 
