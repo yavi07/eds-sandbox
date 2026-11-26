@@ -8,6 +8,10 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
  * Option `image-beside-text-panel`: image and text panel side by side.
  */
 export default function decorate(block) {
+  // only the teaser holding the page's first image can be the LCP image; others load lazily
+  const firstPicture = block.closest('main')?.querySelector('picture');
+  const aboveFold = !!firstPicture && block.contains(firstPicture);
+
   const cells = [...block.children]
     .flatMap((row) => [...row.children])
     .filter((c) => c.textContent.trim() || c.querySelector('picture, img'));
@@ -47,7 +51,9 @@ export default function decorate(block) {
   media.querySelectorAll('picture > img').forEach((img) => {
     const url = new URL(img.src, window.location.href);
     if (url.origin !== window.location.origin || /\.svg$/i.test(url.pathname)) return;
-    img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, true, [{ media: '(min-width: 900px)', width: '2000' }, { width: '900' }]));
+    const picture = createOptimizedPicture(img.src, img.alt, aboveFold, [{ media: '(min-width: 900px)', width: '2000' }, { width: '900' }]);
+    picture.querySelector('img').fetchPriority = aboveFold ? 'high' : 'low';
+    img.closest('picture').replaceWith(picture);
   });
 
   const children = [];

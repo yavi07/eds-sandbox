@@ -9,11 +9,27 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 
 let carouselId = 0;
 
-function optimizeImages(root) {
-  root.querySelectorAll('picture > img').forEach((img) => {
+const BREAKPOINTS = [{ media: '(min-width: 900px)', width: '2000' }, { width: '750' }];
+
+/**
+ * Serves viewport-sized slide images. When the carousel holds the page's first image, its
+ * first slide is the LCP candidate (eager, high priority); every other slide is lazy and low.
+ * @param {Element} root slides list
+ * @param {boolean} aboveFold whether the carousel holds the page's first image
+ */
+function optimizeImages(root, aboveFold) {
+  root.querySelectorAll('picture > img').forEach((img, i) => {
     const url = new URL(img.src, window.location.href);
     if (url.origin !== window.location.origin || /\.svg$/i.test(url.pathname)) return;
-    img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '2000' }]));
+    const lcp = aboveFold && i === 0;
+    const picture = createOptimizedPicture(img.src, img.alt, lcp, BREAKPOINTS);
+    const optimized = picture.querySelector('img');
+    if (img.width && img.height) {
+      optimized.width = img.width;
+      optimized.height = img.height;
+    }
+    optimized.fetchPriority = lcp ? 'high' : 'low';
+    img.closest('picture').replaceWith(picture);
   });
 }
 
@@ -87,6 +103,9 @@ function createSlide(row, index, id) {
 export default function decorate(block) {
   carouselId += 1;
   const id = carouselId;
+  // the block holding the page's first image is the LCP candidate (checked before slides move)
+  const firstPicture = block.closest('main')?.querySelector('picture');
+  const holdsFirstImage = !!firstPicture && block.contains(firstPicture);
   block.id = block.id || `carousel-gallery-${id}`;
   block.setAttribute('role', 'region');
   block.setAttribute('aria-roledescription', 'carousel');
@@ -100,7 +119,7 @@ export default function decorate(block) {
   container.append(slidesList);
 
   rows.forEach((row, i) => slidesList.append(createSlide(row, i, id)));
-  optimizeImages(slidesList);
+  optimizeImages(slidesList, holdsFirstImage);
 
   const children = [container];
 

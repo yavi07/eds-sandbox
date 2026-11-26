@@ -1,19 +1,24 @@
 /**
- * Fetches the footer fragment. Metadata-independent dual fetch:
- * /content/footer.plain.html (local aem up) first, then /footer.plain.html (DA/EDS).
+ * Fetches the footer fragment. Pages previewed from the local workspace live under /content/,
+ * so they read /content/footer.plain.html first; published pages (DA/EDS) only fetch
+ * /footer.plain.html, which avoids a 404 request on every page.
  * @returns {Promise<{html: string, base: string}|null>}
  */
 async function fetchFooter() {
-  // metadata-independent: /content first (localhost), then root (DA/EDS prod)
-  let base = '/content/footer.plain.html';
-  let resp = await fetch('/content/footer.plain.html');
-  if (!resp.ok) {
-    base = '/footer.plain.html';
-    resp = await fetch('/footer.plain.html');
+  const paths = window.location.pathname.startsWith('/content/')
+    ? ['/content/footer.plain.html', '/footer.plain.html']
+    : ['/footer.plain.html'];
+  // eslint-disable-next-line no-restricted-syntax
+  for (const path of paths) {
+    // eslint-disable-next-line no-await-in-loop
+    const resp = await fetch(path);
+    if (resp.ok) {
+      // eslint-disable-next-line no-await-in-loop
+      const html = await resp.text();
+      return { html, base: new URL(path, window.location.href).href };
+    }
   }
-  if (!resp.ok) return null;
-  const html = await resp.text();
-  return { html, base: new URL(base, window.location.href).href };
+  return null;
 }
 
 /**
@@ -40,7 +45,9 @@ function resolveImages(root, base) {
   root.querySelectorAll('img').forEach((img) => {
     const src = img.getAttribute('src');
     if (src && !/^(https?:|data:|\/)/.test(src)) img.src = new URL(src, base).href;
-    img.loading = 'eager';
+    // the footer sits below the fold: never compete with the page's main images
+    img.loading = 'lazy';
+    img.fetchPriority = 'low';
   });
 }
 
@@ -131,8 +138,8 @@ export default async function decorate(block) {
   block.textContent = '';
   if (!fragment) return;
 
-  const tmp = document.createElement('div');
-  tmp.innerHTML = fragment.html;
+  // parse in an inert document so no image starts loading before its loading hint is set
+  const tmp = new DOMParser().parseFromString(fragment.html, 'text/html').body;
   normalizeFragment(tmp);
   resolveImages(tmp, fragment.base);
 

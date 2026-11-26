@@ -163,7 +163,8 @@ button {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--text-color);
+  /* dark areas (footer, utility bar, drawer, locale menu) set --focus-color to a light value */
+  outline: 2px solid var(--focus-color, var(--text-color));
   outline-offset: 2px;
 }
 
@@ -260,7 +261,7 @@ main button.button.accent {
 
 main a.button:focus-visible,
 main button.button:focus-visible {
-  outline: 2px solid var(--text-color);
+  outline: 2px solid var(--focus-color, var(--text-color));
   outline-offset: 2px;
 }
 

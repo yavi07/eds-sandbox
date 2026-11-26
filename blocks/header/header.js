@@ -2,12 +2,15 @@
 const isDesktop = window.matchMedia('(min-width: 1200px)');
 
 /**
- * Fetches the nav fragment. Metadata-independent dual fetch:
- * /content/nav.plain.html (local aem up) first, then /nav.plain.html (DA/EDS).
+ * Fetches the nav fragment. Pages previewed from the local workspace live under /content/,
+ * so they read /content/nav.plain.html first; published pages (DA/EDS) only fetch
+ * /nav.plain.html, which avoids a 404 request on every page.
  * @returns {Promise<{html: string, base: string}|null>}
  */
 async function fetchNav() {
-  const paths = ['/content/nav.plain.html', '/nav.plain.html'];
+  const paths = window.location.pathname.startsWith('/content/')
+    ? ['/content/nav.plain.html', '/nav.plain.html']
+    : ['/nav.plain.html'];
   // eslint-disable-next-line no-restricted-syntax
   for (const path of paths) {
     // eslint-disable-next-line no-await-in-loop
@@ -38,6 +41,8 @@ function normalizeFragment(root) {
 /**
  * Rewrites relative image paths in the fragment against the fragment URL
  * so `images/x.svg` resolves next to wherever nav.plain.html was served from.
+ * Images load lazily (e.g. the flags in the closed locale menu); the logo and the
+ * current locale flag are made eager once the header is built.
  * @param {Element} root fragment root
  * @param {string} base fragment URL
  */
@@ -45,7 +50,8 @@ function resolveImages(root, base) {
   root.querySelectorAll('img').forEach((img) => {
     const src = img.getAttribute('src');
     if (src && !/^(https?:|data:|\/)/.test(src)) img.src = new URL(src, base).href;
-    img.loading = 'eager';
+    img.loading = 'lazy';
+    img.fetchPriority = 'low';
   });
 }
 
@@ -130,6 +136,8 @@ function buildLocalePicker(list) {
     const flagClone = flag.cloneNode(true);
     flagClone.className = 'nav-locale-toggle-flag';
     flagClone.alt = '';
+    flagClone.loading = 'eager';
+    flagClone.removeAttribute('fetchpriority');
     toggle.append(flagClone);
   }
   const label = document.createElement('span');
@@ -199,20 +207,28 @@ function markActive(root) {
  * @param {boolean} [force] desired state
  */
 function toggleDrawer(nav, force) {
-  const open = force !== undefined ? force : !nav.classList.contains('drawer-open');
+  const wasOpen = nav.classList.contains('drawer-open');
+  const open = force !== undefined ? force : !wasOpen;
+  const drawer = nav.querySelector('.nav-drawer');
+  const focusInDrawer = !!drawer?.contains(document.activeElement);
   nav.classList.toggle('drawer-open', open);
   const button = nav.querySelector('.nav-hamburger button');
   if (button) {
     button.setAttribute('aria-expanded', open ? 'true' : 'false');
     button.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
   }
-  // source pushes the page right by the drawer width while the drawer is open
+  // source pushes the page right by the drawer width while the drawer is open;
+  // the pushed-aside page is inert so keyboard and screen-reader users stay in the drawer
   const shift = open ? 'translateX(275px)' : '';
   document.querySelectorAll('body > main, body > footer').forEach((el) => {
     el.style.transition = 'transform 0.5s';
     el.style.transform = shift;
+    el.inert = open;
   });
   document.body.style.overflowY = open ? 'hidden' : '';
+
+  if (open && !wasOpen) drawer?.querySelector('a')?.focus({ preventScroll: true });
+  else if (!open && focusInDrawer && !isDesktop.matches) button?.focus();
 }
 
 /**
@@ -224,8 +240,8 @@ export default async function decorate(block) {
   block.textContent = '';
   if (!fragment) return;
 
-  const tmp = document.createElement('div');
-  tmp.innerHTML = fragment.html;
+  // parse in an inert document so no image starts loading before its loading hint is set
+  const tmp = new DOMParser().parseFromString(fragment.html, 'text/html').body;
   normalizeFragment(tmp);
   resolveImages(tmp, fragment.base);
   const sections = [...tmp.children].filter((el) => el.tagName === 'DIV');
@@ -275,6 +291,10 @@ export default async function decorate(block) {
     const brandEl = document.createElement('div');
     brandEl.className = 'nav-brand';
     brandEl.append(...(brand.querySelector('p') || brand).childNodes);
+    brandEl.querySelectorAll('img').forEach((img) => {
+      img.loading = 'eager';
+      img.removeAttribute('fetchpriority');
+    });
     mainInner.append(brandEl);
   }
 

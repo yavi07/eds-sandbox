@@ -27,6 +27,9 @@
 
 /* ---------- utility row ---------- */
 .header .nav-utility {
+  /* light focus ring on the dark utility bar and its locale menu */
+  --focus-color: #ffea00;
+
   height: 25px;
   background-color: rgb(32 32 32);
   color: rgb(247 247 247);
@@ -284,6 +287,9 @@
 
 /* ---------- mobile drawer ---------- */
 .header .nav-drawer {
+  /* light focus ring on the dark drawer */
+  --focus-color: #ffea00;
+
   position: fixed;
   inset: 0 auto 0 0;
   z-index: 10002;
@@ -295,7 +301,10 @@
   background-color: rgb(32 32 32);
   box-shadow: inset -3px 0 5px 0 rgb(0 0 0 / 35%);
   transform: translateX(-275px);
-  transition: transform 0.5s;
+
+  /* hidden once slid out, so its links leave the tab order and the accessibility tree */
+  visibility: hidden;
+  transition: transform 0.5s, visibility 0s 0.5s;
 }
 
 .header .nav-drawer ul {
@@ -322,6 +331,8 @@
 
 .header nav.drawer-open .nav-drawer {
   transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.5s, visibility 0s;
 }
 
 .header nav.drawer-open .nav-utility,
