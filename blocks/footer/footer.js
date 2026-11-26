@@ -152,8 +152,11 @@ export default async function decorate(block) {
     const nodes = section.tagName === 'DIV' ? [...section.children] : [section];
     nodes.forEach((node) => {
       if (/^H[1-6]$/.test(node.tagName)) {
-        node.classList.add('footer-follow-title');
-        top.append(node);
+        // the footer starts a new part of the page outline: always an H2 (styled by class)
+        const title = el('h2', 'footer-follow-title');
+        if (node.id) title.id = node.id;
+        title.append(...node.childNodes);
+        top.append(title);
       } else if (node.tagName === 'UL' && isImageOnly(node)) {
         top.append(buildIconList(node));
       } else if (node.tagName === 'UL') {

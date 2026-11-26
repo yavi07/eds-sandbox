@@ -102,15 +102,57 @@ h6 {
   font-size: var(--heading-font-size-xs);
 }
 
+/* headings re-levelled for a sequential outline (scripts.js fixHeadingOrder) keep the look of
+   the level they were authored at */
+.heading-h3 {
+  font-size: var(--heading-font-size-l);
+}
+
+.heading-h4,
+.heading-h5,
+.heading-h6 {
+  font-family: var(--body-font-family);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.heading-h4 {
+  margin: 1.33em 0;
+  font-size: var(--heading-font-size-m);
+}
+
+.heading-h5 {
+  margin: 1.67em 0;
+  font-size: var(--heading-font-size-s);
+}
+
+.heading-h6 {
+  margin: 2.33em 0;
+  font-size: var(--heading-font-size-xs);
+}
+
+/* screen-reader-only text (e.g. the page H1 added when a page has none) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* source titles are separate grid components, so a title's bottom space never collapses into
    the next element's top margin: keep it as padding in default content */
-main .default-content-wrapper > :is(h1, h2, h3) {
+main .default-content-wrapper > :is(h1, h2, h3):where(:not([class*='heading-h'])) {
   margin-bottom: 0;
   padding-bottom: 13.5px;
 }
 
 /* underlined section title (source .cmp-title--underline) */
-main .default-content-wrapper h2::after {
+main .default-content-wrapper h2:where(:not([class*='heading-h']))::after {
   content: "";
   display: block;
   width: 84px;
@@ -494,7 +536,7 @@ main > .section.aside > .section-aside ul {
   list-style: none;
 }
 
-main > .section.aside > .section-aside h5 + ul {
+main > .section.aside > .section-aside :is(h5, .heading-h5) + ul {
   margin-top: 70px;
 }
 
@@ -570,7 +612,7 @@ main .section.dark h6 {
 }
 
 /* article sidebar download title and description (source .cmp-download__title / description) */
-main > .section.aside-inset > .section-aside h3 {
+main > .section.aside-inset > .section-aside h3:where(:not([class*='heading-h'])) {
   margin: 7px 0 0;
   padding: 0;
   font-family: var(--body-font-family);
@@ -580,7 +622,7 @@ main > .section.aside-inset > .section-aside h3 {
   text-transform: uppercase;
 }
 
-main > .section.aside-inset > .section-aside h3 + p {
+main > .section.aside-inset > .section-aside h3:where(:not([class*='heading-h'])) + p {
   margin-bottom: 5px;
   font-size: 16px;
   font-weight: 600;
@@ -612,7 +654,7 @@ main > .section.aside-inset .callout-wrapper {
 /* article title, byline and body copy span the full 776px column (source content fragment text
    has no gutter); section titles and images keep the 14px gutter */
 @media (width >= 1200px) {
-  main > .section.aside-inset > .section-main > .default-content-wrapper > :is(h1, h4, p:not(:has(> picture))) {
+  main > .section.aside-inset > .section-main > .default-content-wrapper > :is(h1, h4, .heading-h4, p:not(:has(> picture))) {
     margin-inline: calc(-1 * var(--content-gutter));
   }
 }

@@ -134,6 +134,13 @@ export default function decorate(block) {
 
     // profile option: a list of links naming a social network becomes an icon bar
     if (block.classList.contains('profile')) {
+      // the roles line under the name ("Photographer | Traveler") is a subtitle, not a heading
+      body.querySelectorAll(':scope > :is(h1, h2, h3, h4, h5, h6) ~ :is(h4, h5, h6)').forEach((heading) => {
+        const role = document.createElement('p');
+        role.className = 'cards-article-role';
+        role.append(...heading.childNodes);
+        heading.replaceWith(role);
+      });
       body.querySelectorAll(':scope > ul').forEach((list) => {
         const tagged = [...list.querySelectorAll('a[href]')].filter((a) => {
           const network = SOCIAL_NETWORKS.find((n) => `${a.textContent} ${a.href}`.toLowerCase().includes(n));

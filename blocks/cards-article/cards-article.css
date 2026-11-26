@@ -122,7 +122,6 @@
   width: min(360px, 100%);
   margin: 0 28px 14px 0;
   padding-top: 29px; /* source: the inline lock glyph line sits above the title */
-  opacity: 0.65;
 }
 
 .cards-article.locked .cards-article-card::before {
@@ -143,6 +142,10 @@
 
 .cards-article.locked .cards-article-card-image {
   margin: 0;
+
+  /* only the photo is faded (source fades the whole card, which drops the text below
+     WCAG AA contrast); the text keeps its normal colours */
+  opacity: 0.65;
 }
 
 .cards-article.locked .cards-article-card-image img {
@@ -202,7 +205,8 @@
   line-height: 36px;
 }
 
-/* roles line: authored as h5 (source h5.cmp-title__text); a paragraph is also accepted */
+/* roles line: authored as h5 (source h5.cmp-title__text) and turned into p.cards-article-role
+   by the block; a plain paragraph is also accepted */
 .cards-article.profile .cards-article-card .cards-article-card-body > h5,
 .cards-article.profile .cards-article-card .cards-article-card-body > p:not(.button-wrapper) {
   margin: 0 0 3.5px;
@@ -213,7 +217,7 @@
   white-space: normal;
 }
 
-.cards-article.profile .cards-article-card .cards-article-card-body > h5 {
+.cards-article.profile .cards-article-card .cards-article-card-body > :is(h5, .cards-article-role) {
   font-family: var(--body-font-family);
   font-size: 14px;
   line-height: 21px;

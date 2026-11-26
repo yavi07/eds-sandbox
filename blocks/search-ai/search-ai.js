@@ -205,6 +205,13 @@ export default function decorate(block) {
   config.results.forEach((item) => {
     const li = el('li', 'search-ai-result');
     li.append(...item.childNodes);
+    // result titles sit directly under the page H1: make them H2 (styles are level-agnostic)
+    li.querySelectorAll('h3, h4, h5, h6').forEach((heading) => {
+      const h2 = el('h2');
+      [...heading.attributes].forEach(({ name, value }) => h2.setAttribute(name, value));
+      h2.append(...heading.childNodes);
+      heading.replaceWith(h2);
+    });
     li.querySelectorAll('a.button').forEach((a) => a.classList.remove('button', 'primary', 'secondary'));
     li.querySelectorAll('.button-container, .button-wrapper').forEach((p) => p.classList.remove('button-container', 'button-wrapper'));
     list.append(li);

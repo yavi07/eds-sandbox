@@ -52,7 +52,13 @@ export default function decorate(block) {
     const url = new URL(img.src, window.location.href);
     if (url.origin !== window.location.origin || /\.svg$/i.test(url.pathname)) return;
     const picture = createOptimizedPicture(img.src, img.alt, aboveFold, [{ media: '(min-width: 900px)', width: '2000' }, { width: '900' }]);
-    picture.querySelector('img').fetchPriority = aboveFold ? 'high' : 'low';
+    const optimized = picture.querySelector('img');
+    optimized.fetchPriority = aboveFold ? 'high' : 'low';
+    // keep the authored dimensions so a lazy image reserves its space before it loads
+    if (img.getAttribute('width') && img.getAttribute('height')) {
+      optimized.width = img.getAttribute('width');
+      optimized.height = img.getAttribute('height');
+    }
     img.closest('picture').replaceWith(picture);
   });
 

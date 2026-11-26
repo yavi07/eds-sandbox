@@ -13,6 +13,7 @@ import {
   readBlockConfig,
   toCamelCase,
   toClassName,
+  getMetadata,
 } from './aem.js';
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
@@ -196,6 +197,48 @@ function decorateAsideSections(main) {
 }
 
 /**
+ * Gives a page without an authored H1 a screen-reader-only one from the page title,
+ * so every page has a main heading. An authored H1 always wins.
+ * @param {Element} main The main element
+ */
+function ensurePageHeading(main) {
+  if (main.querySelector('h1')) return;
+  const title = getMetadata('og:title') || document.title;
+  if (!title) return;
+  const h1 = document.createElement('h1');
+  h1.className = 'visually-hidden';
+  h1.textContent = title;
+  main.prepend(h1);
+}
+
+/**
+ * Keeps the heading outline sequential. Authored default-content headings that skip
+ * levels (e.g. an H5 "Share this Adventure" label right after the H1) are re-levelled to
+ * one below the previous heading; a `heading-hN` class keeps their original look.
+ * Headings inside blocks are left out: blocks run later and may restructure or remove them
+ * (e.g. accordion-faq unwraps its question headings), so each block owns its own levels.
+ * @param {Element} main The main element
+ */
+function fixHeadingOrder(main) {
+  // the screen-reader H1 from ensurePageHeading sits directly in main and starts the outline
+  let previous = main.querySelector(':scope > h1') ? 1 : 0;
+  main.querySelectorAll('.default-content-wrapper > :is(h1, h2, h3, h4, h5, h6)').forEach((heading) => {
+    const level = Number(heading.tagName[1]);
+    // never re-level into a second H1: headings before the first one are left as authored
+    if (previous === 0 || level <= previous + 1) {
+      previous = level;
+      return;
+    }
+    const fixed = document.createElement(`h${previous + 1}`);
+    [...heading.attributes].forEach(({ name, value }) => fixed.setAttribute(name, value));
+    fixed.classList.add(`heading-h${level}`);
+    fixed.append(...heading.childNodes);
+    heading.replaceWith(fixed);
+    previous += 1;
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -208,6 +251,8 @@ export function decorateMain(main) {
   // blocks first: decorateBlocks only finds blocks at section > wrapper > block
   decorateBlocks(main);
   decorateAsideSections(main);
+  ensurePageHeading(main);
+  fixHeadingOrder(main);
   decorateButtons(main);
 }
 
